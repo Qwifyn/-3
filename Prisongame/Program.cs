@@ -113,7 +113,6 @@ class Program
 
                 default:
                     Console.WriteLine("Неправильная команда");
-                    Console.ReadKey();
                     continue;
             }
 
@@ -150,6 +149,7 @@ class Program
                 if (hasDagger == true)
                 {
                     Console.WriteLine("Ты победил охранника!");
+                    health = health - 20;
                     map[newY, newX] = '.';
                     x = newX;
                     y = newY;
@@ -205,20 +205,9 @@ class Program
             else if (map[y, x] == 'H')
             {
                 health = health + 20;
-
-                if (health > maxHealth)
-                {
-                    health = maxHealth;
-                }
-
                 map[y, x] = '.';
                 Console.WriteLine("Ты нашел аптечку");
             }
-            else
-            {
-                Console.WriteLine("Ты продолжаешь искать выход");
-            }
-
             if (health <= 0)
             {
                 health = 0;
@@ -228,11 +217,6 @@ class Program
             {
                 Console.WriteLine("Осторожно! Мало здоровья");
             }
-            else
-            {
-                Console.WriteLine("Ты еще держишься");
-            }
-
             if (map[y, x] == 'E' && hasKey == true)
             {
                 won = true;
@@ -268,7 +252,6 @@ class Program
         {
             Console.WriteLine("Ты вышел из игры");
         }
-
         Console.WriteLine("Здоровье: " + health);
         Console.WriteLine("Количество ходов: " + turns);
         Console.WriteLine("Игра окончена!");
